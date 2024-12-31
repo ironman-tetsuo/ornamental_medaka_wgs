@@ -6,7 +6,7 @@ __Contributors__
 Tetsuo Kon, Rui Tang, Koto Kon-Nanjyo, Soichiro Fushiki, Hideki Noguchi, Atsushi Toyoda, Kiyoshi Naruse, Yoshihiro Omori
 
 
-<img src="image/medaka_github.jpg" alt="Description" width="1000">
+<img src="image/medaka_github.jpg" alt="Description" width="700">
 
 ## Software requirements
 Thi is the software requirements to perform analyses.

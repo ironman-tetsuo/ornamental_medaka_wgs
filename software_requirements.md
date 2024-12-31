@@ -7,3 +7,4 @@ To perform the analyses, the following softwares are required.
 - [GATK v4.4.0.0](https://gatk.broadinstitute.org/hc/en-us/)
 - [PLINK v1.90b4.5](https://www.cog-genomics.org/plink/)
 - [MEGA-CC](https://www.megasoftware.net/web_help_10/MEGA-CC.htm)
+- [MEGA11](https://www.megasoftware.net/)

@@ -29,6 +29,7 @@ This section describes data source for the analyses
 - [Generation of manhattan plots](./manhattan_plot.md)
 
 ## Population genomic analysis
-- [Quality control analysis of the short reads](./QC_nanopore.md)
+- [Generation of neighbor joining trees](./NJ.md)
+- 
 
 

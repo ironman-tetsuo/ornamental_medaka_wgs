@@ -23,4 +23,12 @@ This section describes data source for the analyses
 
 <img src="image/Pipeline_github.jpg" alt="Description" width="1000">
 
+## GWAS
+- [Generation of input files for PLINK](./plink_input.md)
+- [GWAS analysis](./perform_gwas.md)
+- [Generation of manhattan plots](./manhattan_plot.md)
+
+## Population genomic analysis
+- [Quality control analysis of the short reads](./QC_nanopore.md)
+
 

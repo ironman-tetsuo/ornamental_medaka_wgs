@@ -29,7 +29,8 @@ This section describes data source for the analyses
 - [Generation of manhattan plots](./manhattan_plot.md)
 
 ## Population genomic analysis
+- [PCA analysis](./PCA.md)
 - [Generation of neighbor joining trees](./NJ.md)
-- 
+- [Admixture analysis](./Admixture.md)
 
 

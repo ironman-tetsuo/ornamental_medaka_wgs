@@ -6,7 +6,7 @@ __Contributors__
 Tetsuo Kon, Rui Tang, Koto Kon-Nanjyo, Soichiro Fushiki, Hideki Noguchi, Atsushi Toyoda, Kiyoshi Naruse, Yoshihiro Omori
 
 
-<img src="image/medaka_github.jpg" alt="Description" width="500">
+<img src="image/medaka_github.jpg" alt="Description" width="1000">
 
 ## Software requirements
 Thi is the software requirements to perform analyses.
@@ -21,6 +21,6 @@ This section describes data source for the analyses
 - [Individual variant calling for generating GVCF files](./Individual_variant_calling.md)
 - [Joint variant calling for generating VCF files](./Joint_variant_calling.md)
 
-<img src="image/Pipeline_github.jpg" alt="Description" width="700">
+<img src="image/Pipeline_github.jpg" alt="Description" width="1000">
 
 

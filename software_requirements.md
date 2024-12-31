@@ -9,3 +9,4 @@ To perform the analyses, the following softwares are required.
 - [MEGA-CC](https://www.megasoftware.net/web_help_10/MEGA-CC.htm)
 - [MEGA11](https://www.megasoftware.net/)
 - [ADMIXTURE v1.3.0](https://dalexander.github.io/admixture/)
+- [Trimmomatic v0.36](http://www.usadellab.org/cms/?page=trimmomatic)

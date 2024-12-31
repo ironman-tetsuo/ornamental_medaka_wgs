@@ -18,4 +18,5 @@ This section describes data source for the analyses
 ## Variant calling
 - [Quality control analysis of the short reads](./QC_nanopore.md)
 - [Read mapping](./Read_mapping.md)
-- [Variant calling](./SV_calling.md)
+- [Individual variant calling for generating GVCF files](./Individual_variant_calling.md)
+- [Joint variant calling for generating VCF files](./Joint_variant_calling.md)

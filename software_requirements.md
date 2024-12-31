@@ -8,3 +8,4 @@ To perform the analyses, the following softwares are required.
 - [PLINK v1.90b4.5](https://www.cog-genomics.org/plink/)
 - [MEGA-CC](https://www.megasoftware.net/web_help_10/MEGA-CC.htm)
 - [MEGA11](https://www.megasoftware.net/)
+- [ADMIXTURE v1.3.0](https://dalexander.github.io/admixture/)

@@ -1,7 +1,5 @@
 # Whole genome sequencing of ornamental medaka strains
 
-
-# Hydra transposable element analyses
 Ornamental medaka strains derived from wild Japanese medaka (Oryzias latipes species complex) are bred worldwide. Over 200 years of selective breeding have produced over 700 strains with a wide variety of phenotypes, including diverse body coloration, scales, eyeball morphology, and fin and body shapes. Here, we performed whole-genome sequencing analysis of ornamental medaka strains with diverse phenotypes.
   
 __Contributors__

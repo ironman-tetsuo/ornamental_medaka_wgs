@@ -7,3 +7,6 @@
 6. Sudhir Kumar, Glen Stecher, Daniel Peterson, Koichiro Tamura. MEGA-CC: computing core of molecular evolutionary genetics analysis program for automated and iterative data analysis. Bioinformatics. 2012 Oct 15;28(20):2685-6. doi: 10.1093/bioinformatics/bts507.
 7. Koichiro Tamura, Glen Stecher, Sudhir Kumar. MEGA11: Molecular Evolutionary Genetics Analysis Version 11. Mol Biol Evol
 . 2021 Jun 25;38(7):3022-3027. doi: 10.1093/molbev/msab120.
+8. David H Alexander, John Novembre, Kenneth Lange. Fast model-based estimation of ancestry in unrelated individuals. Genome Res. 2009 Sep;19(9):1655-64. doi: 10.1101/gr.094052.109.
+9. Anthony M Bolger, Marc Lohse, Bjoern Usadel. Trimmomatic: a flexible trimmer for Illumina sequence data. Bioinformatics
+. 2014 Aug 1;30(15):2114-20. doi: 10.1093/bioinformatics/btu170.

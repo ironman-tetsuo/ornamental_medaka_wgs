@@ -1,3 +1,12 @@
+library("qqman")
+Scaffold_Name_Number <- read.table(file="/data3/kontetsu/Projects/Project_medaka40/9_asigning_numbers_to_scaffolds/Scaffold_Name-Number.txt", header=FALSE, stringsAsFactor=F, row.names=1)
+COLOR <- c(rep(c("gray34", "gray74"), 25))
+phenotype <- read.table("column_phenotype.txt", header=F, stringsAsFactors=F)[,2]
+YLIM <- c(0, 80)
+CEX <- 0.01
+WIDTH <- 3000
+HEIGHT <- 1000
+
 for(i in 1:length(phenotype)){
 dat <- read.table(file=paste(phenotype[i], ".gwas", sep=""), header=FALSE, stringsAsFactor=F)
 colnames(dat) <- c("SNP", "CHR", "BP", "P")

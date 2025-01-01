@@ -45,7 +45,7 @@ sample5
 )
 
 #GVCF path
-gvcf_path="/path_to_HaplotypeCaller"
+gvcf_path="/path_to_gvcf_file"
 #CPU usage
 thread=20
 

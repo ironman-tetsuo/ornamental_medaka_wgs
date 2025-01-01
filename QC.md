@@ -1,6 +1,10 @@
 # Quality control analysis of the short reads
 
 This is a script for a quality control analysis of raw illumina sequencing reads.
+```
+vim run_FastQC.sh
+```
+
 - [run_FastQC.sh](scripts/run_FastQC.sh)
 ```
 #!/bin/bash

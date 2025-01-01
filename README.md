@@ -18,6 +18,7 @@ This section describes data source for the analyses
 ## Variant calling
 - [Quality control analysis of the short reads](./QC.md)
 - [Read mapping](./Read_mapping.md)
+- [Adding @RG tag to bam files without @RG tag](./Add_rg_tag.md)
 - [Individual variant calling for generating GVCF files](./Individual_variant_calling.md)
 - [Joint variant calling for generating VCF files](./Joint_variant_calling.md)
 

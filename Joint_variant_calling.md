@@ -240,5 +240,42 @@ done
 seq 0 $((${#INTERVALS[@]}-1)) | tr "\n" " " | xargs --delimiter=" " -P ${thread} -I {} sh -c "gatk --java-options "-Xmx10g" GenotypeGVCFs -R ${Genome_GATK_path} -genomicsdb-use-vcf-codec -V gendb://{}_db -O {}.vcf 2>{}.GenotypeGVCFs.err.log 1>{}.GenotypeGVCFs.out.log"
 ```
 
+Identify failed files
+```
+cat *.GenotypeGVCFs.out.log | wc -l
+0
+
+cat *.GenotypeGVCFs.err.log | grep "Traversal complete." | wc -l
+743
+
+#Declare INTERVALS
+INTERVALS=(`cat intervals.list`)
+
+#Find failed chunk
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Traversal complete." ${i}.GenotypeGVCFs.err.log | grep "Traversal complete.")
+done | awk 'NF==2{print $2}' > FAILED.txt
+
+#Delete failed files
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Traversal complete." ${i}.GenotypeGVCFs.err.log | grep "Traversal complete.") \
+| awk 'NF==2{print $2".vcf"}' 
+done | xargs rm
+
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Traversal complete." ${i}.GenotypeGVCFs.err.log | grep "Traversal complete.") \
+| awk 'NF==2{print $2".vcf.idx"}'
+done  | xargs rm
+```
+
+
+
+
+
+
+
+
+
+
 
 

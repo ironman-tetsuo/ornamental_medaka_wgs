@@ -305,6 +305,14 @@ echo "${FAILED[@]} " | xargs --delimiter=" " -P ${thread} -I {} sh -c "gatk --ja
 
 ```
 
+Confirm that all samples are processed successfully.
+```
+cat *.GenotypeGVCFs.out.log | wc -l
+0
+
+cat *.GenotypeGVCFs.err.log | grep "Traversal complete." | wc -l
+745
+```
 
 
 

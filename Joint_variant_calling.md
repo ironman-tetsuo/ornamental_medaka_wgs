@@ -148,7 +148,7 @@ done | awk 'NF==2{print $2}' > FAILED.txt
 ```
 
 Then, perform GenomicsDBImport forfailed samples
-- (run_GenomicsDBImport_for-failed-regions.sh)[./scripts/run_GenomicsDBImport_for-failed-regions.sh]
+- [run_GenomicsDBImport_for-failed-regions.sh](./scripts/run_GenomicsDBImport_for-failed-regions.sh)
 ```
 #!/usr/bin/bash
 

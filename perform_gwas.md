@@ -4,10 +4,10 @@ Check the phenotype list.
 head -n 1 metafiles/medaka_pheno14_Kon-add-wild-samples.tsv   | tr "\t" "\n" | awk 'BEGIN{OFS="\t"}{print NR,$1}' | tail -n +9 | tr -d "\r" > column_phenotype.txt
 head -n 5 column_phenotype.txt
 9    yokihi2
- 10    gold2
- 11    white2
- 12    blue
- 13    orochi
+10    gold2
+11    white2
+12    blue
+13    orochi
 ```
 
 With the following script, GWAS will be performed on the variant data set in PLINK BED/BIM/FAM format.

@@ -16,7 +16,7 @@ Thi is the software requirements to perform analyses.
 This section describes data source for the analyses
 - [List of data source](./Data_source.md)  
 ## Variant calling
-- [Quality control analysis of the short reads](./QC_nanopore.md)
+- [Quality control analysis of the short reads](./QC.md)
 - [Read mapping](./Read_mapping.md)
 - [Individual variant calling for generating GVCF files](./Individual_variant_calling.md)
 - [Joint variant calling for generating VCF files](./Joint_variant_calling.md)

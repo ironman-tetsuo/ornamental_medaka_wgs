@@ -1,6 +1,71 @@
 # Generation of neighbor joining trees
 
-This is a script for ***.
+## Compute distance matrices
 ```
-print("Hello world!")
+#Generate a sample name list from the fam file
+awk '{print $1}' \
+merged_SNP_INDEL_--max-missing0.90_--maf0.05.with-ID.fam \
+> merged_SNP_INDEL_--max-missing0.90_--maf0.05.with-ID.name
+
+#Generate a distance matrix based on the Hamming distance
+plink \
+--allow-extra-chr \
+--bfile merged_SNP_INDEL_--max-missing0.90_--maf0.05.with-ID \
+--out merged_SNP_INDEL_--max-missing0.90_--maf0.05.with-ID \
+--cluster \
+--matrix
+
+#Generate a value part for a meg file
+awk '{LIMIT=NR -1; a="";for (i=1; i<=LIMIT ; i++) a=a 1-$i" "; print a}' merged_SNP_INDEL_--max-missing0.90_--maf0.05.with-ID.mibs > tmp1
+
+#generate OTUs for a meg file
+tail -n +2  metafiles/medaka_pheno14_Kon-add-wild-samples.tsv  | awk '{print $6, $7}' | sort -k1 > tmp2-1
+join -1 1 -2 1 merged_SNP_INDEL_--max-missing0.90_--maf0.05.with-ID.name tmp2-1 | awk '{print $2}' > tmp2-2
+
+tail -n +2  metafiles/DRP005544_SraRunTable_v3.tsv | awk '{print $2, $2"_"$3}' > tmp2-3
+join -1 1 -2 1 merged_SNP_INDEL_--max-missing0.90_--maf0.05.with-ID.name tmp2-3 | awk '{print $2}' > tmp2-4
+cat tmp2-2 tmp2-4 | awk '{print "#"$1}'> tmp2
+
+#Combine
+cat  <(echo -e '#mega\n!Title: IBS;') tmp2  tmp1 >  IBS.meg
+
+#Generate Ibs matrices
+for i in `seq 1 500`;  do
+#Generate a value part for a meg file
+plink \
+--allow-extra-chr \
+--bfile ${i} \
+--out ${i} \
+--cluster \
+--matrix
+#Generate a value part for a meg file
+awk '{LIMIT=NR -1; a="";for (i=1; i<=LIMIT ; i++) a=a 1-$i" "; print a}' ${i}.mibs > tmp1
+#generate OTUs for a meg file
+tail -n +2  metafiles/medaka_pheno14_Kon-add-wild-samples.tsv  | awk '{print $6, $7}' | sort -k1 > tmp2-1
+join -1 1 -2 1 ${i}.name tmp2-1 | awk '{print $2}' > tmp2-2
+tail -n +2  metafiles/DRP005544_SraRunTable_v3.tsv | awk '{print $2, $2"_"$3}' > tmp2-3
+join -1 1 -2 1 ${i}.name tmp2-3 | awk '{print $2}' > tmp2-4
+cat tmp2-2 tmp2-4 | awk '{print "#"$1}'> tmp2
+#Combine
+cat  <(echo -e '#mega\n!Title: IBS;') tmp2  tmp1 >  ${i}.meg
+done
+```
+## Generate trees.
+```
+#Generate tree for basis
+megacc -a infer_NJ_distances.mao -d IBS.meg -o IBS
+
+for i in `seq 1 500`;  do
+#Generate NJ tree in each loop
+megacc -a infer_NJ_distances.mao -d ${i}.meg -o ${i}_IBS_NJ
+done
+
+#Combine newk files
+rm bootstrap.nwk
+for i in `seq 1 500`; do 
+cat ${i}_IBS_NJ.nwk >> bootstrap.nwk
+done
+
+#Generate a tree with bootstrap value
+nw_support -p IBS.nwk bootstrap.nwk > NJ.nwk
 ```

@@ -335,9 +335,11 @@ cat <(grep -v "^#" ?.vcf) <(grep -v "^#" ??.vcf) <(grep -v "^#" ???.vcf) | wc -l
 3294624
 grep -v "^#" merged.vcf | wc -l
 3294624
+```
 
 Extract SNP and Indel
 - [run_extract_SNP_INDEL.sh](./scripts/run_extract_SNP_INDEL.sh)
+
 ```
 #!/usr/bin/bash
 #Path to fasta

@@ -50,7 +50,7 @@ cat tmp2-2 tmp2-4 | awk '{print "#"$1}'> tmp2
 cat  <(echo -e '#mega\n!Title: IBS;') tmp2  tmp1 >  ${i}.meg
 done
 ```
-## Generate trees.
+## Generate trees
 ```
 #Generate tree for basis
 megacc -a infer_NJ_distances.mao -d IBS.meg -o IBS

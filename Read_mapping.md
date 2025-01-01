@@ -6,13 +6,8 @@ Before read mapping, a reference genome is need to be indexed.
 bwa index Oryzias_latipes.ASM223467v1.dna_sm.toplevel.fa
 ```
 
-
 Generate a script to map short reads to the indexed reference genome.   
 Resulting bam files have @RG tag which is compatible to GATK.
-```
-vim run_bwa.sh
-```
-
 - [run_bwa.sh](scripts/run_bwa.sh)
 ```
 #!/bin/bash

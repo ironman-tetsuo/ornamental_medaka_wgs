@@ -83,3 +83,125 @@ cat *.GenomicsDBImport.err.log | grep "Import completed!" | wc -l
 745
 ```
 
+Find failed sample, and redo analyses.
+```
+#Declare INTERVALS
+INTERVALS=(`cat intervals.list`)
+
+wc -l intervals.list
+745 intervals.list
+echo  $((${#INTERVALS[@]}-1))
+744
+
+ls -lh | grep "_db" | wc -l
+745
+cat *.GenomicsDBImport.out.log | grep "true" | wc -l
+686
+cat *.GenomicsDBImport.err.log | grep "Import completed!" | wc -l
+686
+
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Import completed!" ${i}.GenomicsDBImport.err.log | grep "Import completed!")
+done  | head -n 20
+1:1-1000000    0    
+ 1:1000001-2000000    1    
+ 1:2000001-3000000    2    13:12:13.195 INFO  GenomicsDBImport - Import completed!
+ 1:3000001-4000000    3    13:12:23.188 INFO  GenomicsDBImport - Import completed!
+ 1:4000001-5000000    4    13:12:23.235 INFO  GenomicsDBImport - Import completed!
+ 1:5000001-6000000    5    13:12:03.690 INFO  GenomicsDBImport - Import completed!
+ 1:6000001-7000000    6    13:11:46.418 INFO  GenomicsDBImport - Import completed!
+ 1:7000001-8000000    7    13:11:36.873 INFO  GenomicsDBImport - Import completed!
+ 1:8000001-9000000    8    13:12:03.695 INFO  GenomicsDBImport - Import completed!
+ 1:9000001-10000000    9    13:11:47.163 INFO  GenomicsDBImport - Import completed!
+ 1:10000001-11000000    10    13:11:42.815 INFO  GenomicsDBImport - Import completed!
+ 1:11000001-12000000    11    13:12:03.482 INFO  GenomicsDBImport - Import completed!
+ 1:12000001-13000000    12    
+ 1:13000001-14000000    13    13:12:18.984 INFO  GenomicsDBImport - Import completed!
+ 1:14000001-15000000    14    
+ 1:15000001-16000000    15    13:12:25.192 INFO  GenomicsDBImport - Import completed!
+ 1:16000001-17000000    16    
+ 1:17000001-18000000    17    
+ 1:18000001-19000000    18    13:12:39.530 INFO  GenomicsDBImport - Import completed!
+ 1:19000001-20000000    19    
+
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Import completed!" ${i}.GenomicsDBImport.err.log | grep "Import completed!")
+done | awk 'NF==2{print $2}' | wc -l
+59 #59 + 686 = 745
+
+#Delete failed ones
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Import completed!" ${i}.GenomicsDBImport.err.log | grep "Import completed!")
+done | awk 'NF==2{print $2"_db"}' | xargs rm -rf 
+
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Import completed!" ${i}.GenomicsDBImport.err.log | grep "Import completed!")
+done | awk 'NF==2{print $2".GenomicsDBImport.err.log"}' | xargs rm -rf 
+
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Import completed!" ${i}.GenomicsDBImport.err.log | grep "Import completed!")
+done | awk 'NF==2{print $2".GenomicsDBImport.out.log"}' | xargs rm -rf 
+
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+paste -d "\t" <(echo ${INTERVALS[${i}]}) <(echo ${i}) <(grep "Import completed!" ${i}.GenomicsDBImport.err.log | grep "Import completed!")
+done | awk 'NF==2{print $2}' > FAILED.txt
+```
+
+Then, perform GenomicsDBImport forfailed samples
+
+```
+vim run_GenomicsDBImport_for-failed-regions.sh
+
+#!/usr/bin/bash
+
+#Declare variables for SRR IDs
+#SampleNames=(`cat <(tail -n +2 metafiles/medaka_pheno14_Kon-add-wild-samples.tsv | awk -F "\t" 'BEGIN{OFS="\t"}{print $6}') <(tail -n +2 metafiles/DRP005544_SraRunTable_v2.txt | awk '{print $1}')`)
+SampleNames=(
+sample1
+sample2
+sample3
+sample4
+sample5
+)
+
+#GVCF path
+gvcf_path="/path_to_gatk"
+#CPU usage
+thread=45
+#Path to reference genome fasta
+Genome_GATK_path="/path_to_fasta/Oryzias_latipes.ASM223467v1.dna_sm.toplevel.fa"
+
+#Delare INTERVALS variable
+INTERVALS=(`cat intervals.list`)
+
+#Generate options for GenomicsDBImport
+gvcf_files=""
+for i in `seq 0 $((${#SampleNames[@]}-1))`; do
+gvcf_files=${gvcf_files}"-V ${gvcf_path}/${SampleNames[${i}]}.g.vcf.gz "
+done
+
+#Declare failed samples
+FAILED=(`cat FAILED.txt`)
+
+#Perform GenomicsDBImport
+echo "${FAILED[@]} " | xargs --delimiter=" " -P ${thread} -I {} sh -c "gatk --java-options "-Xmx40g" GenomicsDBImport -R ${Genome_GATK_path} ${gvcf_files} -L {}.list --genomicsdb-workspace-path {}_db 2>{}.GenomicsDBImport.err.log 1>{}.GenomicsDBImport.out.log"
+```
+
+Confirm all samples are successfully processed.
+```
+#Declare INTERVALS
+INTERVALS=(`cat intervals.list`)
+
+wc -l intervals.list
+745 intervals.list
+echo  $((${#INTERVALS[@]}-1))
+744
+
+ls -lh | grep "_db" | wc -l
+745
+cat *.GenomicsDBImport.out.log | grep "true" | wc -l
+745
+cat *.GenomicsDBImport.err.log | grep "Import completed!" | wc -l
+745
+```
+

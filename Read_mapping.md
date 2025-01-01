@@ -12,9 +12,8 @@ Resulting bam files have @RG tag which is compatible to GATK.
 ```
 vim run_bwa.sh
 ```
-- [run_bwa.sh](scripts/run_bwa.sh)
-```
 
+- [run_bwa.sh](scripts/run_bwa.sh)
 ```
 #!/bin/bash
 #SampleNames=(`tail -n +2 metafiles/210209_Medaka_v1.txt | awk -F "\t" 'BEGIN{OFS="\t"}{print $2}'  | xargs`)

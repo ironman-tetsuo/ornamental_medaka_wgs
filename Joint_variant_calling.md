@@ -1,4 +1,5 @@
 # Joint variant calling for generating VCF files
+## Generate the variant database for the intervals
 Generate a list of intervals.   
 https://gatk.broadinstitute.org/hc/en-us/articles/360035531852-Intervals-and-interval-lists
 ```
@@ -202,4 +203,6 @@ cat *.GenomicsDBImport.out.log | grep "true" | wc -l
 cat *.GenomicsDBImport.err.log | grep "Import completed!" | wc -l
 745
 ```
+
+## Generate VCF files
 

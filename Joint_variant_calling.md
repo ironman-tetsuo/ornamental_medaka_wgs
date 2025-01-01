@@ -269,6 +269,7 @@ done  | xargs rm
 ```
 
 Peform GenotypeGVCFs for the failed samples
+- [run_GenotypeGVCFs_for-failed-regions.sh](./scripts/run_GenotypeGVCFs_for-failed-regions.sh)
 ```
 #!/usr/bin/bash
 

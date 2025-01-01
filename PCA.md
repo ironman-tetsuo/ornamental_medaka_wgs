@@ -65,17 +65,6 @@ plot(x=eigenvec$V3, y=eigenvec$V4,  pch=16, cex=CEX, cex.lab=1.0, cex.axis=1.5, 
 text(x=eigenvec$V3, y=eigenvec$V4, labels=sample_names$fixedID_DONT_change, cex=1, pos=4, col="black")
 dev.off()
 
-CEX<-2
-png(file="./Figures/PC1-PC2_v1_without-label.png", width = 1000, height = 1000)
-plot(x=eigenvec$V3, y=eigenvec$V4,  pch=16, cex=CEX, cex.lab=1.0, cex.axis=1.5, cex.main=1.0, main="Coplot of PC1 and PC2", xlab="PC1", ylab="PC2")
-dev.off()
-
-CEX<-1
-tiff(file="./Figures/PC1-PC2_v1.tiff", width = 10000, height = 10000, res=600)
-plot(x=eigenvec$V3, y=eigenvec$V4,  pch=16, cex=CEX, cex.lab=1.0, cex.axis=1.5, cex.main=1.0, main="Coplot of PC1 and PC2", xlab="PC1", ylab="PC2")
-text(x=eigenvec$V3, y=eigenvec$V4, labels=sample_names$fixedID_DONT_change, cex=CEX, pos=4, col="black")
-dev.off()
-
 #Plot with color
 #Normal resolution
 CEX<-2
@@ -85,16 +74,6 @@ text(x=eigenvec$V3, y=eigenvec$V4, labels=sample_names$fixedID_DONT_change, cex=
 legend("topright", legend = names(COLOR), col = COLOR, pch = 16, cex=2)
 dev.off()
 
-#High resolution
-CEX<-2
-tiff(file="./Figures/PC1-PC2_with-color_v1.tiff", width=10000, height=10000)
-plot(x=eigenvec$V3, y=eigenvec$V4,  pch=16, cex=CEX, cex.lab=1.0, cex.axis=1.5, cex.main=1.0, main="Coplot of PC1 and PC2", xlab="PC1", ylab="PC2", col=COLOR[sample_names$Region])
-text(x=eigenvec$V3, y=eigenvec$V4, labels=sample_names$fixedID_DONT_change, cex=1, pos=4, col="black")
-legend("topright", legend = names(COLOR), col = COLOR, pch = 16, cex=2)
-dev.off()
-
-CEX<-1.3
-png(file="./Figures/PC1-PC2_v1_without-label_with_color.png", width = 1000, height = 1000)
-plot(x=eigenvec$V3, y=eigenvec$V4,  pch=16, cex=CEX, cex.lab=1.0, cex.axis=1.5, cex.main=1.0, main="Coplot of PC1 and PC2", xlab="PC1", ylab="PC2", col=COLOR[sample_names$Region])
-dev.off()
 ```
+<img src="image/PC1-PC2_v1_without-label.jpg" alt="Description" width="700">
+

@@ -207,6 +207,7 @@ cat *.GenomicsDBImport.err.log | grep "Import completed!" | wc -l
 ## Generate VCF files
 Generate GVCF files for the intervals
 - [run_GenotypeGVCFs.sh](./scripts/run_GenotypeGVCFs.sh)
+```
 #!/usr/bin/bash
 
 #Declare variables for SRR IDs

@@ -21,7 +21,7 @@ This section describes data source for the analyses
 - [Adding @RG tag to bam files without @RG tag](./Add_rg_tag.md)
 - [Individual variant calling for generating GVCF files](./Individual_variant_calling.md)
 - [Joint variant calling for generating VCF files](./Joint_variant_calling.md)
-- [Filtering variants](./Filtering_variants.md)
+- [Variant filtering](./Filtering_variants.md)
 
 <img src="image/Pipeline_github_v2.jpg" alt="Description" width="1000">
 

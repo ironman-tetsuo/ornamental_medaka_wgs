@@ -27,7 +27,8 @@ done
 ```
 
 
-Some chunks failed to process, likely due to insufficient memory, requiring identification and reprocessing of the unsuccessful ones. This step itself usually completes within a few hours, so it might be better in future attempts to reduce memory usage to around 10 GB and lower the parallelism to about 20.
+Some chunks failed to process, likely due to insufficient memory, requiring identification and reprocessing of the unsuccessful ones.   
+This step itself usually completes within a few hours, so it might be better in future attempts to reduce memory usage to around 10 GB and lower the parallelism to about 20.   
 
 - [run_GenomicsDBImport.sh](scripts/run_GenomicsDBImport.sh)
 ```

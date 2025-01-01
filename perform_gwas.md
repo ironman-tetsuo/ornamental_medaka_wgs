@@ -48,34 +48,22 @@ grep -v "^#" ${vcf_path}/merged_SNP_INDEL_--max-missing${MISSING}_--maf${MAF}.wi
 join -1 1 -2 1 tmp1 SNP-BP.txt | awk 'BEGIN {OFS="\t"}{print $1,$2,$4,$3}' | sort -k1,1f > ${PHENOTYPE[${k}]}.gwas
 done
 ```
+
+
 Script for manhattan plot.
 - [run_qqman.R](./scripts/run_qqman.R)
+
+
 ```
-##ライブラリを読み込み
 library("qqman")
-
-#スキャフォールドの名前と対応する連番のリストを読み込む（これは固定でよい）
-Scaffold_Name_Number <- read.table(file="/data3/kontetsu/Projects/Project_medaka40/9_asigning_numbers_to_scaffolds/Scaffold_Name-Number.txt", header=FALSE, stringsAsFactor=F, row.names=1)
-
-#プロットの色のベクター
+Scaffold_Name_Number <- read.table(file="/path/Scaffold_Name-Number.txt", header=FALSE, stringsAsFactor=F, row.names=1)
 COLOR <- c(rep(c("gray34", "gray74"), 25))
-
-#フェノタイプ表のヘッダーをパースして作った列番号とフェノタイプの関係表を読み込む
 phenotype <- read.table("column_phenotype.txt", header=F, stringsAsFactors=F)[,2]
-
-
-###ここは図の出来具合を決めるパラメータ。お好みで変更可能###
-#Y軸のスケール
 YLIM <- c(0, 80)
-#点の大きさ
 CEX <- 0.01
-#図の幅
 WIDTH <- 3000
-#図の高さ
 HEIGHT <- 1000
 
-
-####染色体のみをプロット###
 for(i in 1:length(phenotype)){
 dat <- read.table(file=paste(phenotype[i], ".gwas", sep=""), header=FALSE, stringsAsFactor=F)
 colnames(dat) <- c("SNP", "CHR", "BP", "P")

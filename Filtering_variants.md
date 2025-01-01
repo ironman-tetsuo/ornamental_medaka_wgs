@@ -1,4 +1,4 @@
-# Filtering variants
+# Variant filtering
 
 The concatenated vcf file is subjected to variant filtering to extract SNPs and INDELs.
 - [run_filtering.sh](scripts/run_filtering.sh)

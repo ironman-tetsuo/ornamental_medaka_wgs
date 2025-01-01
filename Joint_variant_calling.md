@@ -150,8 +150,6 @@ done | awk 'NF==2{print $2}' > FAILED.txt
 Then, perform GenomicsDBImport forfailed samples
 
 ```
-vim run_GenomicsDBImport_for-failed-regions.sh
-
 #!/usr/bin/bash
 
 #Declare variables for SRR IDs

@@ -64,3 +64,22 @@ done
 #Perform GenomicsDBImport
 seq 0 $((${#INTERVALS[@]}-1)) | tr "\n" " " | xargs --delimiter=" " -P ${thread} -I {} sh -c "gatk --java-options "-Xmx10g" GenomicsDBImport -R ${Genome_GATK_path} ${gvcf_files} -L {}.list --genomicsdb-workspace-path {}_db 2>{}.GenomicsDBImport.err.log 1>{}.GenomicsDBImport.out.log"
 ```
+
+Confirm that all samples have been successfully finished.
+```
+#Declare INTERVALs
+INTERVALS=(`cat intervals.list`)
+
+wc -l intervals.list
+745 intervals.list
+echo  $((${#INTERVALS[@]}-1))
+744
+
+ls -lh | grep "_db" | wc -l
+745
+cat *.GenomicsDBImport.out.log | grep "true" | wc -l
+745
+cat *.GenomicsDBImport.err.log | grep "Import completed!" | wc -l
+745
+```
+

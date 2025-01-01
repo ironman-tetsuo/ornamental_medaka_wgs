@@ -1,6 +1,33 @@
 # Joint variant calling for generating VCF files
 Generate a list of intervals.   
 https://gatk.broadinstitute.org/hc/en-us/articles/360035531852-Intervals-and-interval-lists
+```
+WINDOW=1000000
+seqkit sliding \
+-s ${WINDOW} \
+-W ${WINDOW} \
+--seq-type dna \
+--greedy Oryzias_latipes.ASM223467v1.dna_sm.toplevel.fa \
+| bioawk -c fastx '{print $name}' \
+| awk -F "_sliding" '{print $1$2}'\
+| awk -F ":" '$1!="MT"{print $0}' \
+> intervals.list
+
+#Count number of raws
+wc -l intervals.list 
+745 intervals.list
+
+#Declare intervals.list variable
+INTERVALS=(`cat intervals.list`)
+
+#Generate list files
+for i in `seq 0 $((${#INTERVALS[@]}-1))`; do
+echo ${INTERVALS[${i}]} > ${i}.list
+done
+```
+
+
+Some chunks failed to process, likely due to insufficient memory, requiring identification and reprocessing of the unsuccessful ones. This step itself usually completes within a few hours, so it might be better in future attempts to reduce memory usage to around 10 GB and lower the parallelism to about 20.
 
 - [run_GenomicsDBImport.sh](scripts/run_GenomicsDBImport.sh)
 ```
